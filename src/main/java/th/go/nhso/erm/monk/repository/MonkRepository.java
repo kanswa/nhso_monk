@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface MonkRepository extends JpaRepository<MonkTrans, Long> {
 
-    List<MonkTrans> findByRefId(String refId);
+    List<MonkTrans> findByRefIdAndRecordStatus(String refId, String recordStatus);
 }

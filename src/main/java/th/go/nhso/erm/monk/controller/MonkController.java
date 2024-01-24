@@ -51,12 +51,11 @@ public class MonkController {
             HttpServletRequest req
     ) throws Exception {
 
-        monkService.save(MonkTrans.builder()
+        monkService.update(MonkTrans.builder()
                 .refId(monk.getRefId())
                 .firstName(monk.getFirstName())
                 .lastName(monk.getLastName())
                 .build()
-                .editor()
         );
 
         return ResponseEntityUtil.returnStatusOk(req);

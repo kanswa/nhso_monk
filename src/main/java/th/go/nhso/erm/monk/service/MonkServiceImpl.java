@@ -4,10 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import th.go.nhso.erm.exception.NotFoundDataException;
 import th.go.nhso.erm.monk.entity.MonkTrans;
 import th.go.nhso.erm.monk.repository.MonkRepository;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Slf4j
 @Service
@@ -29,10 +31,22 @@ public class MonkServiceImpl implements MonkService {
 
     @Override
     public MonkTrans findByRefId(String refId) throws Exception {
-        List<MonkTrans> m = monkRepository.findByRefId(refId);
+        List<MonkTrans> m = monkRepository.findByRefIdAndRecordStatus(refId, "A");
         if (CollectionUtils.isEmpty(m)) {
             throw new Exception("not found data");
         }
         return m.getFirst();
+    }
+
+    @Override
+    public void update(MonkTrans editor) throws Exception {
+        List<MonkTrans> m = monkRepository.findByRefIdAndRecordStatus(editor.getRefId(), "A");
+        if(CollectionUtils.isEmpty(m)){
+            throw new NotFoundDataException();
+        }
+        MonkTrans monk = m.getFirst();
+        monk.setFirstName(editor.getFirstName());
+        monk.setLastName(editor.getLastName());
+        monkRepository.save(monk.editor());
     }
 }
