@@ -20,7 +20,7 @@ public class ExceptionHttpResponse extends BasicHttpResponse {
     public ExceptionHttpResponse(int status, String message, String errorCode, String path, String errorStacktrace) {
         super(status, message, path);
         this.errorCode = StringUtils.isNotBlank(errorCode)? errorCode : UNDEFIND_ERROR_CODE;
-        this.errorStacktrace = StringUtils.isNotBlank(errorStacktrace)? errorStacktrace : UNDEFIND_ERROR_CODE;
+        this.errorStacktrace = StringUtils.isNotBlank(errorStacktrace)? errorStacktrace : "";
     }
 
     public ExceptionHttpResponse(int status, Exception ex, String errorCode, String path, String errorStacktrace) {
@@ -31,32 +31,32 @@ public class ExceptionHttpResponse extends BasicHttpResponse {
         this.path = path;
         this.errorCode = StringUtils.isNotBlank(errorCode)? errorCode : UNDEFIND_ERROR_CODE;
         this.errorFields = CollectionUtils.isNotEmpty(errorFields) ? errorFields : new ArrayList<>();
-        this.errorStacktrace = StringUtils.isNotBlank(errorStacktrace)? errorStacktrace : UNDEFIND_ERROR_CODE;
+        this.errorStacktrace = StringUtils.isNotBlank(errorStacktrace)? errorStacktrace : "";
     }
 
     public ExceptionHttpResponse(HttpStatus httpStatus, String message, String errorCode, String path, String errorStacktrace) {
         super(httpStatus, message, path);
         this.errorCode = StringUtils.isNotBlank(errorCode)? errorCode : UNDEFIND_ERROR_CODE;
-        this.errorStacktrace = StringUtils.isNotBlank(errorStacktrace)? errorStacktrace : UNDEFIND_ERROR_CODE;
+        this.errorStacktrace = StringUtils.isNotBlank(errorStacktrace)? errorStacktrace : "";
     }
 
     public ExceptionHttpResponse(HttpStatus httpStatus, String message, String errorCode, String path, List<String> errorFields, String errorStacktrace) {
         super(httpStatus, message, path);
         this.errorCode = StringUtils.isNotBlank(errorCode)? errorCode : UNDEFIND_ERROR_CODE;
         this.errorFields = CollectionUtils.isNotEmpty(errorFields) ? errorFields : new ArrayList<>();
-        this.errorStacktrace = StringUtils.isNotBlank(errorStacktrace)? errorStacktrace : UNDEFIND_ERROR_CODE;
+        this.errorStacktrace = StringUtils.isNotBlank(errorStacktrace)? errorStacktrace : "";
     }
     
     public ExceptionHttpResponse(HttpStatus httpStatus, Exception ex, String errorCode, String path, String errorStacktrace) {
         super(httpStatus, null != ex ? ex.getMessage() : null, path);
         this.errorCode = StringUtils.isNotBlank(errorCode)? errorCode : UNDEFIND_ERROR_CODE;
-        this.errorStacktrace = StringUtils.isNotBlank(errorStacktrace)? errorStacktrace : UNDEFIND_ERROR_CODE;
+        this.errorStacktrace = StringUtils.isNotBlank(errorStacktrace)? errorStacktrace : "";
     }
 
     public ExceptionHttpResponse(HttpStatus httpStatus, String message, String errorCode, String path) {
         super(httpStatus, message, path);
         this.errorCode = StringUtils.isNotBlank(errorCode)? errorCode : UNDEFIND_ERROR_CODE;
-        this.errorStacktrace = StringUtils.isNotBlank(errorCode)? errorCode : UNDEFIND_ERROR_CODE;
+        this.errorStacktrace = StringUtils.isNotBlank(errorCode)? errorCode : "";
     }
 
 }

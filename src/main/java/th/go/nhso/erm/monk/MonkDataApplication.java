@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
 		"th.go.nhso.erm.config",
+		"th.go.nhso.erm.service",
 		"th.go.nhso.erm.monk.service",
 		"th.go.nhso.erm.monk.controller"
 })

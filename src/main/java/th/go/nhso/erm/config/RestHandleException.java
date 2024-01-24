@@ -71,7 +71,7 @@ public class RestHandleException {
     /** for check data request is valid */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleMethodArgumentNotValid(
-            MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+            MethodArgumentNotValidException ex, WebRequest request) {
         if (null == ex.getBindingResult()
                 || null == ex.getBindingResult().getAllErrors()
                 || ex.getBindingResult().getAllErrors().isEmpty()) {

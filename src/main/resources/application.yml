@@ -25,7 +25,7 @@ spring:
 logging:
     level:
         root: INFO
-        com:
-            gable:
-                baac:
-                    phoenix: DEBUG
+        th:
+            go:
+                nhso:
+                    erm: DEBUG
