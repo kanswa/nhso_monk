@@ -1,4 +1,4 @@
-package th.go.nhso.erm.monk.controller.model;
+package th.go.nhso.erm.monk.model;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,10 +1,10 @@
 package th.go.nhso.erm.monk.service;
 
-import th.go.nhso.erm.monk.controller.entity.MonkTrans;
+import th.go.nhso.erm.monk.entity.MonkTrans;
 
 public interface MonkService {
 
-    public void save(MonkTrans monk);
+    void save(MonkTrans monk) throws Exception;
 
     MonkTrans findByRefId(String refId) throws Exception;
 }

@@ -4,6 +4,8 @@
 
 #config database connection
 spring:
+    application:
+        name: erm_monk
     datasource:
         platform: oracle
         url: jdbc:oracle:thin:@${DB_ORACLE_HOST}:${DB_ORACLE_PORT}/${DB_ORACLE_SID}

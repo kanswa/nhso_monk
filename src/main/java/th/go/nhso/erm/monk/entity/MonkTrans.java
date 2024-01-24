@@ -1,8 +1,8 @@
-package th.go.nhso.erm.monk.controller.entity;
+package th.go.nhso.erm.monk.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import th.go.nhso.erm.monk.controller.model.MonkTransModel;
+import th.go.nhso.erm.monk.model.MonkTransModel;
 
 import java.time.LocalDateTime;
 
@@ -43,5 +43,11 @@ public class MonkTrans {
         this.recordStatus = "A";
         this.updatedBy = "SYSTEM";
         this.updatedDt = now;
+    }
+
+    public MonkTrans editor() {
+        this.updatedBy = "SYSTEM";
+        this.updatedDt = LocalDateTime.now();
+        return this;
     }
 }

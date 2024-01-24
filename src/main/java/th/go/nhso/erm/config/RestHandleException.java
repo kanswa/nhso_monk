@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
@@ -33,13 +34,25 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class RestHandleException {
 
-    String DEFAULT_ERROR_CODE = "error";
+    String DEFAULT_ERROR_CODE = "ERRMON000";
 
     /** default error on service */
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleDefaultException(Exception ex, WebRequest request) {
+        log.debug("handle error on handleDefaultException");
+        return ResponseEntityUtil.returnInternalServeError(((ServletWebRequest) request).getRequest(),
+                DEFAULT_ERROR_CODE,
+                getLabelMessage(DEFAULT_ERROR_CODE),
+                ex.getMessage());
+    }
 
-        return ResponseEntityUtil.returnInternalServeError(((ServletWebRequest) request).getRequest(), DEFAULT_ERROR_CODE, ex.getMessage(), "");
+    /** default error on save data duplicate */
+    @ExceptionHandler({ConstraintViolationException.class})
+    public ResponseEntity<Object> handleConstraintViolationException(Exception ex, WebRequest request) {
+        log.debug("handle error on handleConstraintViolationException");
+        return ResponseEntityUtil.returnStatusErrorManual(((ServletWebRequest) request).getRequest(),
+                "ERRMON001",
+                getLabelMessage("ERRMON001"));
     }
 
     /** for check data request is valid */

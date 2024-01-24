@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ExceptionHttpResponse extends BasicHttpResponse {
     
-    public static String UNDEFIND_ERROR_CODE = "error";
+    public static String UNDEFIND_ERROR_CODE = "ERRMON000";
     
     private final String errorCode;
 

@@ -8,8 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import th.go.nhso.erm.monk.controller.entity.MonkTrans;
-import th.go.nhso.erm.monk.controller.model.MonkTransModel;
+import th.go.nhso.erm.monk.entity.MonkTrans;
+import th.go.nhso.erm.monk.model.MonkTransModel;
 import th.go.nhso.erm.monk.service.MonkServiceImpl;
 import th.go.nhso.erm.util.ResponseEntityUtil;
 
@@ -41,6 +41,23 @@ public class MonkController {
     ) throws Exception {
 
         monkService.save(new MonkTrans(monk));
+
+        return ResponseEntityUtil.returnStatusOk(req);
+    }
+
+    @PutMapping(value = "/monk", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> updateMonk(
+            @RequestBody @Valid MonkTransModel monk,
+            HttpServletRequest req
+    ) throws Exception {
+
+        monkService.save(MonkTrans.builder()
+                .refId(monk.getRefId())
+                .firstName(monk.getFirstName())
+                .lastName(monk.getLastName())
+                .build()
+                .editor()
+        );
 
         return ResponseEntityUtil.returnStatusOk(req);
     }
