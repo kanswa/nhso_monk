@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
+import th.go.nhso.erm.exception.NotFoundDataException;
 import th.go.nhso.erm.resp.ExceptionHttpResponse;
 import th.go.nhso.erm.util.GsonUtil;
 import th.go.nhso.erm.util.ResponseEntityUtil;
@@ -53,6 +53,15 @@ public class RestHandleException {
         return ResponseEntityUtil.returnStatusErrorManual(((ServletWebRequest) request).getRequest(),
                 "ERRMON001",
                 getLabelMessage("ERRMON001"));
+    }
+
+    /** default error on update data not exist */
+    @ExceptionHandler({NotFoundDataException.class})
+    public ResponseEntity<Object> handleNotFoundDataException(Exception ex, WebRequest request) {
+        log.debug("handle error on handleNotFoundDataException");
+        return ResponseEntityUtil.returnStatusErrorManual(((ServletWebRequest) request).getRequest(),
+                "ERRMON002",
+                getLabelMessage("ERRMON002"));
     }
 
     /** for check data request is valid */
@@ -102,8 +111,8 @@ public class RestHandleException {
                         mapList
                                 .stream()
                                 .map(m -> StringUtils.isNotBlank(m.get("code"))
-                                        && (((String) m.get("code")).contains("AssertTrue")
-                                        || ((String) m.get("code")).contains("AssertFalse"))
+                                        && (m.get("code").contains("AssertTrue")
+                                        || m.get("code").contains("AssertFalse"))
                                         ? getLabelMessage(m.get("defaultMessage"))
                                         : getLabelMessageSeqFix(m.get("field"), m.get("defaultMessage")))
                                 .reduce("", (s, e) -> s + (StringUtils.isNotBlank(s) ? ", " : "") + e),

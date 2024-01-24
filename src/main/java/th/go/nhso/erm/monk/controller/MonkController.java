@@ -40,7 +40,7 @@ public class MonkController {
             HttpServletRequest req
     ) throws Exception {
 
-        monkService.save(new MonkTrans(monk));
+        monkService.save(new MonkTrans(monk).initData());
 
         return ResponseEntityUtil.returnStatusOk(req);
     }

@@ -9,7 +9,6 @@ import th.go.nhso.erm.monk.entity.MonkTrans;
 import th.go.nhso.erm.monk.repository.MonkRepository;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 @Slf4j
 @Service
@@ -47,6 +46,6 @@ public class MonkServiceImpl implements MonkService {
         MonkTrans monk = m.getFirst();
         monk.setFirstName(editor.getFirstName());
         monk.setLastName(editor.getLastName());
-        monkRepository.save(monk.editor());
+        monkRepository.save(monk.editData());
     }
 }

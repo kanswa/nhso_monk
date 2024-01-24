@@ -34,18 +34,22 @@ public class MonkTrans {
     LocalDateTime updatedDt;
 
     public MonkTrans(MonkTransModel monk) {
-        LocalDateTime now = LocalDateTime.now();
         this.refId = monk.getRefId();
         this.firstName = monk.getFirstName();
         this.lastName = monk.getLastName();
+    }
+
+    public MonkTrans initData() {
+        LocalDateTime now = LocalDateTime.now();
         this.createdBy = "SYSTEM";
         this.createdDt = now;
         this.recordStatus = "A";
         this.updatedBy = "SYSTEM";
         this.updatedDt = now;
+        return this;
     }
 
-    public MonkTrans editor() {
+    public MonkTrans editData() {
         this.updatedBy = "SYSTEM";
         this.updatedDt = LocalDateTime.now();
         return this;
