@@ -1,4 +1,4 @@
-package th.go.nhso.monk;
+package th.go.nhso.erm.monk;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

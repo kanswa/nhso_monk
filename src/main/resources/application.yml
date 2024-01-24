@@ -1,0 +1,29 @@
+#config server 
+#server:
+#    port: ${SERVER_PORT}
+
+#config database connection
+spring:
+    datasource:
+        platform: oracle
+        url: jdbc:oracle:thin:@${DB_ORACLE_HOST}:${DB_ORACLE_PORT}/${DB_ORACLE_SID}
+        username: ${DB_ORACLE_USER}
+        password: ${DB_ORACLE_PASSWORD}
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+    jpa:
+        show-sql: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: Asia/Bangkok
+
+#config logger
+logging:
+    level:
+        root: INFO
+        com:
+            gable:
+                baac:
+                    phoenix: DEBUG
