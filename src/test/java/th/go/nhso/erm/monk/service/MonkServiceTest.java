@@ -17,6 +17,9 @@ public class MonkServiceTest {
         try {
             MonkTrans m = mockService.findByRefId("12345");
             Assertions.assertNotNull(m);
+            Assertions.assertEquals("f1", m.getFirstName());
+//            Assertions.assertEquals("f2", m.getFirstName());
+//            throw new Exception("test error to catch");
         } catch (Exception e) {
             Assertions.fail(e);
         }
