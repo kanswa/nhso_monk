@@ -48,4 +48,9 @@ public class MonkServiceImpl implements MonkService {
         monk.setLastName(editor.getLastName());
         monkRepository.save(monk.editData());
     }
+
+    @Override
+    public List<MonkTrans> findAll() throws Exception {
+        return monkRepository.findMonkByRecordStatus("A");
+    }
 }
