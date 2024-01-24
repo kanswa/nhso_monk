@@ -50,4 +50,27 @@ public class MonkTrans {
         this.updatedDt = LocalDateTime.now();
         return this;
     }
+
+    /*
+     * sql for create table
+     *
+        CREATE TABLE ERMMONK.MONK_TRANS (
+            ID NUMBER(38,0) NOT NULL,
+            REF_ID VARCHAR2(30) NOT NULL,
+            FIRST_NAME VARCHAR2(100) NULL,
+            LAST_NAME VARCHAR2(100) NULL,
+            CREATED_BY VARCHAR2(50) NOT NULL,
+            CREATED_DT TIMESTAMP NOT NULL,
+            RECORD_STATUS VARCHAR2(1) NULL,
+            UPDATED_BY VARCHAR2(50) NULL,
+            UPDATED_DT TIMESTAMP NULL,
+            CONSTRAINT MONK_TRANS_PK PRIMARY KEY (ID),
+            CONSTRAINT "MONK_TRANS_REF_ID_UNIQUE" UNIQUE ("REF_ID")
+        )
+
+        CREATE UNIQUE INDEX "ERMMONK"."MONK_TRANS_PK" ON "ERMMONK"."MONK_TRANS" ("ID");
+        CREATE UNIQUE INDEX "ERMMONK"."MONK_TRANS_REF_ID_UNIQUE" ON "ERMMONK"."MONK_TRANS" ("REF_ID");
+
+        CREATE SEQUENCE ERMMONK.SQ_MONK_TRANS INCREMENT BY 1 MINVALUE 0 NOCYCLE NOCACHE NOORDER ;
+     */
 }
