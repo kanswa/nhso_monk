@@ -3,12 +3,17 @@ package th.go.nhso.erm.monk.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import th.go.nhso.erm.exception.NotFoundDataException;
 import th.go.nhso.erm.monk.entity.MonkTrans;
 import th.go.nhso.erm.monk.repository.MonkRepository;
+import th.go.nhso.erm.util.GsonUtil;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -53,4 +58,23 @@ public class MonkServiceImpl implements MonkService {
     public List<MonkTrans> findAll() throws Exception {
         return monkRepository.findMonkByRecordStatus("A");
     }
+
+    @Override
+    @Transactional
+    public List<Object[]> queryMonk(String recordStatus) throws Exception {
+        return monkRepository.callQueryMonk(recordStatus);
+    }
+
+    @Override
+    @Transactional
+    public Integer queryTest(String recordStatus) throws Exception {
+        return monkRepository.callQueryTest(recordStatus);
+    }
+
+    @Override
+    @Transactional
+    public Map<String, Object> queryTest2o(String recordStatus) throws Exception {
+        return monkRepository.callQueryTest2o(recordStatus);
+    }
+
 }
