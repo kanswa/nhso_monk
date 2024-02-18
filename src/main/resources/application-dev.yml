@@ -30,8 +30,6 @@ spring:
 
 #config logger
 logging:
-    file:
-        path: 'D:\test\logs\monk\'
     level:
         root: INFO
         org:
