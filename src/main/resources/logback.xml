@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="log_path" value="D:\test\logs\monk\"/>
+    <property name="log_name" value="erm_monk"/>
+    <property name="log_suffix" value="yyyyMMdd"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{0}[%M:%L] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ROTATE_FILE_DAILY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_path}${log_name}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_path}${log_name}_%d{${log_suffix}}.log</fileNamePattern>
+            <maxHistory>93</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{0}[%M:%L] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ROTATE_FILE_DAILY"/>
+    </root>
+
+    <logger name="th.go.nhso.erm" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ROTATE_FILE_DAILY"/>
+    </logger>
+
+</configuration>
